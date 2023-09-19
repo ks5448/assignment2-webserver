@@ -45,8 +45,9 @@ def webServer(port=13331):
                
 
       #Send the content of the requested file to the client
-      file_data = f.read()
-      connectionSocket.send(file_data)
+      #file_data = f.read()
+      #connectionSocket.send(file_data)
+      connectionSocket.send(f.read())
       f.close()
       #for i in f: #for line in file
         #Fill in start - send your html file contents #Fill in end 
@@ -56,7 +57,7 @@ def webServer(port=13331):
       # Send response message for invalid request due to the file not being found (404)
       # Remember the format you used in the try: block!
       #Fill in start
-      #outputdata = b"Content-Type: text/html; charset=UTF-8\r\n"
+      outputdata = b"Content-Type: text/html; charset=UTF-8\r\n"
       connectionSocket.send(b"HTTP/1.1 404 Not Found\r\n")
       connectionSocket.send(b"404 Not Found - File Not Found\r\n")
       connectionSocket.send(b"\r\n")
