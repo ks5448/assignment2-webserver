@@ -58,6 +58,7 @@ def webServer(port=13331):
       #Fill in start
       outputdata = b"Content-Type: text/html; charset=UTF-8\r\n"
       connectionSocket.send(b"HTTP/1.1 404 Not Found\r\n")
+      connectionSocket.send(b"404 Not Found - File Not Found")
       connectionSocket.send(b"\r\n")
       print("File Not Found", e)
       #Fill in end
