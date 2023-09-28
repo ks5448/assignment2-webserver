@@ -67,7 +67,8 @@ def webServer(port=13331):
       headers += b"\r\n"
 
       connectionSocket.send(headers)
-      print("Error 404 - File Not Found", e)
+      print("Error 404 - File Not Found")
+      #print("Error 404 - File Not Found", e)
       #Fill in end
 
 
