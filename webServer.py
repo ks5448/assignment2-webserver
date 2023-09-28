@@ -31,6 +31,8 @@ def webServer(port=13331):
       #fill in end
       
       outputdata = b"Content-Type: text/html; charset=UTF-8\r\n"
+      server = f"Server: {addr}"
+      connection = f"Connection: {connectionSocket}"
       #Fill in start -This variable can store your headers you want to send for any valid or invalid request. 
       #Content-Type above is an example on how to send a header as bytes. There are more!
       #Fill in end
@@ -40,22 +42,18 @@ def webServer(port=13331):
       #Fill in start
       header_data = b"HTTP/1.1 200 OK \r\n"
       header_data += outputdata
+      header_data += server.encode()
+      header_data += connection.encode()
       header_data += b"\r\n"
-      header_data += f.read().encode()
+      #header_data += f.read().encode()
 
-      connectionSocket.send(header_data)
-
-      #connectionSocket.send(b"HTTP/1.1 200 OK\r\n")
-      #connectionSocket.send(outputdata)
-      #connectionSocket.send(b"\r\n")
+      #connectionSocket.send(header_data)
       #Fill in end
                
 
       #Send the content of the requested file to the client
-      #file_data = f.read()
-      #connectionSocket.send(file_data)
-      #f.read()
-      #connectionSocket.send(f.read().encode*())
+      header_data += f.read().encode()
+      connectionSocket.send(header_data)
       f.close()
       #for i in f: #for line in file
         #Fill in start - send your html file contents #Fill in end 
@@ -72,9 +70,6 @@ def webServer(port=13331):
       headers += b"\r\n"
 
       connectionSocket.send(headers)
-      #connectionSocket.send(b"HTTP/1.1 404 Not Found\r\n")
-      #connectionSocket.send(b"\r\n")
-      #connectionSocket.send(b"404 Not Found - File Not Found\r\n")
       print("Error 404 - File Not Found", e)
       #Fill in end
 
