@@ -31,8 +31,7 @@ def webServer(port=13331):
       #fill in end
       
       outputdata = b"Content-Type: text/html; charset=UTF-8\r\n"
-      #server = f"Server: {addr}"
-      #connection = f"Connection: {connectionSocket}"
+      connection = b"Connection: close\r\n"
       #Fill in start -This variable can store your headers you want to send for any valid or invalid request. 
       #Content-Type above is an example on how to send a header as bytes. There are more!
       #Fill in end
@@ -42,12 +41,8 @@ def webServer(port=13331):
       #Fill in start
       header_data = b"HTTP/1.1 200 OK \r\n"
       header_data += outputdata
-      #header_data += server.encode()
-      #header_data += connection.encode()
+      header_data += connection
       header_data += b"\r\n"
-      #header_data += f.read().encode()
-
-      #connectionSocket.send(header_data)
       #Fill in end
                
 
