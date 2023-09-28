@@ -38,9 +38,16 @@ def webServer(port=13331):
       #Send an HTTP header line into socket for a valid request. What header should be sent for a response that is ok? 
       #Note that a complete header must end with a blank line, creating the four-byte sequence "\r\n\r\n" Refer to https://w3.cs.jmu.edu/kirkpams/OpenCSF/Books/csf/html/TCPSockets.html
       #Fill in start
-      connectionSocket.send(b"HTTP/1.1 200 OK\r\n")
-      connectionSocket.send(outputdata)
-      connectionSocket.send(b"\r\n")
+      header_data = b"HTTP/1.1 200 OK \r\n"
+      header_data += outputdata
+      header_data += b"\r\n"
+      header_data += f.read().encode()
+
+      connectionSocket.send(header_data)
+
+      #connectionSocket.send(b"HTTP/1.1 200 OK\r\n")
+      #connectionSocket.send(outputdata)
+      #connectionSocket.send(b"\r\n")
       #Fill in end
                
 
@@ -48,7 +55,7 @@ def webServer(port=13331):
       #file_data = f.read()
       #connectionSocket.send(file_data)
       #f.read()
-      connectionSocket.send(f.read().encode*())
+      #connectionSocket.send(f.read().encode*())
       f.close()
       #for i in f: #for line in file
         #Fill in start - send your html file contents #Fill in end 
@@ -59,9 +66,15 @@ def webServer(port=13331):
       # Remember the format you used in the try: block!
       #Fill in start
       outputdata = b"Content-Type: text/html; charset=UTF-8\r\n"
-      connectionSocket.send(b"HTTP/1.1 404 Not Found\r\n")
-      connectionSocket.send(b"\r\n")
-      connectionSocket.send(b"404 Not Found - File Not Found\r\n")
+
+      headers = b"HTTP/1.1 404 Not Found\r\n"
+      headers += outputdata
+      headers += b"\r\n"
+
+      connectionSocket.send(headers)
+      #connectionSocket.send(b"HTTP/1.1 404 Not Found\r\n")
+      #connectionSocket.send(b"\r\n")
+      #connectionSocket.send(b"404 Not Found - File Not Found\r\n")
       print("Error 404 - File Not Found", e)
       #Fill in end
 
