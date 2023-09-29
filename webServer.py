@@ -33,7 +33,6 @@ def webServer(port=13331):
       outputdata = b"Content-Type: text/html; charset=UTF-8\r\n"
       connection = b"Connection: close\r\n"
       server = b"Server: Apache/2.4.41\r\n"
-      #server = b"Server: Apache/2.4.41 (Unix)\r\n"
       #Fill in start -This variable can store your headers you want to send for any valid or invalid request. 
       #Content-Type above is an example on how to send a header as bytes. There are more!
       #Fill in end
